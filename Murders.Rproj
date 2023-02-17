@@ -27,5 +27,4 @@ o <- murders[["population"]]
 identical(p,o)
 
 # Use colchetes para extrair `abb` de `assassinatos` e atribuí-lo a "b"
-b <- assassinatos [["abb"]]
-
+b <- murders[["abb"]]
