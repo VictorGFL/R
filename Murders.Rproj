@@ -1,0 +1,31 @@
+# Carrega o pacote e os dados
+library(dslabs)
+data(murders)
+
+# Use os nomes das funções para extrair os nomes das variáveis
+names(murders)
+
+# Para acessar a variável de população do conjunto de dados de assassinatos, use este código
+p <- murders$population
+
+# Para determinar a classe do objeto `p` usamos este código:
+class(p)
+
+# Use o acessador para extrair abreviações de estado e atribuí-lo a "a"
+a <- murders$abb
+
+# Determina a classe de "a"
+class(a)
+
+#Extraímos a população assim:
+p <- murders$population
+
+# É assim que fazemos o mesmo com os colchetes:
+o <- murders[["population"]]
+
+# Podemos confirmar que esses dois são iguais
+identical(p,o)
+
+# Use colchetes para extrair `abb` de `assassinatos` e atribuí-lo a "b"
+b <- assassinatos [["abb"]]
+
