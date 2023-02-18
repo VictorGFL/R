@@ -130,3 +130,81 @@ murder_rate <- murders$total / murders$population * 100000
 # Calcule a taxa média de homicídios nos EUA
 mean(murder_rate)
 
+# Armazene `murder_rate < 1` em `low`
+low <- murder_rate < 1
+low
+
+# Obtém os índices das entradas que estão abaixo de 1
+which(low)
+
+# Nomes de estados com taxas de homicídio inferiores a 1
+murders$state[low]
+
+# Crie um vetor ind para estados do Nordeste e com taxas de homicídios menores que 1.
+ind <- low & murders$region=="Northeast"
+
+# Nomes dos estados em `ind`
+murders$state[ind]
+
+# Calcule a taxa média de homicídios usando `mean` e armazene-a no objeto chamado `avg`
+avg <-mean(murder_rate)
+
+# Quantos estados têm taxas de homicídio abaixo da média? Verifique usando a soma
+soma(murder_rate < mean)
+
+# Armazene as 3 abreviações em um vetor chamado `abbs` (lembre-se que são vetores de caracteres e precisam de aspas)
+abbs <- c("AK", "MI", "IA")
+
+# Combine os abbs com os assassinatos$abb e armazene em `ind`
+ind <- match(abbs , murders$abb)
+
+# Imprime os nomes dos estados de `ind`
+assassinatos$estado[ind]
+
+# Armazene as 5 abreviações em `abbs`. (lembre-se que são vetores de caracteres)
+abbs <- c("MA", "ME", "MI", "MO", "MU")
+# Use o comando %in% para verificar se as entradas de abbs são abreviaturas no frame de dados de assassinatos
+abbs%em%murders$abb
+
+# Use o comando `which` e o operador `!` para descobrir quais abreviações de índice não fazem parte do conjunto de dados e armazene em `ind`
+ind <- which(!abbs%in%murders$abb)
+
+# Identifique abreviações de `abbs` que estão em `ind`
+abbs[ind]
+
+# Carregar dplyr
+library(dplyr)
+
+# Redefinir assassinatos para incluir uma coluna denominada taxa com as taxas de homicídio por 100.000
+murders <- mutate(murders, rate = (murders$total/murders$population)*100000)
+
+# Note que se você quiser ranks do mais alto para o mais baixo você pode pegar o negativo e então calcular os ranks
+x <- c(88, 100, 83, 92, 94)
+rank(-x)
+
+#Defina a taxa
+rate <-  murders$total/ murders$population * 100000
+
+# Redefinir assassinatos para incluir uma coluna chamada classificação com as classificações de taxa do maior para o menor
+murders <- mutate(murders, rank =rank(-rate))
+
+# Use select para mostrar apenas nomes de estado e abreviações de assassinatos
+select(murders, state, abb)
+
+# Adicione as colunas necessárias
+murders <- mutate(murders, rate = total/population * 100000, rank = rank(-rate))
+
+# Filtre para mostrar os 5 principais estados com as maiores taxas de homicídio
+filter(murders, rank <= 5)
+
+# Use o filtro para criar um novo quadro de dados no_south
+no_south <- filter(murders, region != "South" )
+
+# Número de estados (linhas) nesta categoria
+nrow(no_south)
+
+# Crie um novo quadro de dados chamado assassinatos_nw apenas com os estados do nordeste e do oeste
+murders_nw <- filter(murders, region %in% c("Northeast", "West"))
+
+# Número de estados (linhas) nesta categoria
+nrow(murders_nw)
