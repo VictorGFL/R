@@ -36,7 +36,7 @@ identical(a,b)
 class(murders$region)
 
 # Determina o número de regiões incluídas nesta variável
-lenght(levels(murders$region))
+length(levels(murders$region))
 
 # A função `c()` conecta todas as strings dentro dela em um único vetor, que podemos atribuir a `x`
 x <- c("a", "a", "b", "b", "b", "c")
@@ -109,14 +109,14 @@ ind <- order(murders$population)
 my_df <- data.frame(states = states[ind], ranks = ranks[ind])
 
 # Usando o novo conjunto de dados
-biblioteca (dslabs)
+library(dslabs)
 data(na_example)
 
 # Verificando a estrutura
 str(na_example)
 
 # Descubra a média de todo o conjunto de dados
-mean(na_exemplo)
+mean(na_example)
 
 # Use is.na para criar um índice lógico ind que informa quais entradas são NA
 ind <- is.na(na_example)
@@ -150,7 +150,7 @@ murders$state[ind]
 avg <-mean(murder_rate)
 
 # Quantos estados têm taxas de homicídio abaixo da média? Verifique usando a soma
-soma(murder_rate < mean)
+sum(murder_rate < avg)
 
 # Armazene as 3 abreviações em um vetor chamado `abbs` (lembre-se que são vetores de caracteres e precisam de aspas)
 abbs <- c("AK", "MI", "IA")
@@ -159,12 +159,12 @@ abbs <- c("AK", "MI", "IA")
 ind <- match(abbs , murders$abb)
 
 # Imprime os nomes dos estados de `ind`
-assassinatos$estado[ind]
+murders$state[ind]
 
 # Armazene as 5 abreviações em `abbs`. (lembre-se que são vetores de caracteres)
 abbs <- c("MA", "ME", "MI", "MO", "MU")
 # Use o comando %in% para verificar se as entradas de abbs são abreviaturas no frame de dados de assassinatos
-abbs%em%murders$abb
+abbs%in%murders$abb
 
 # Use o comando `which` e o operador `!` para descobrir quais abreviações de índice não fazem parte do conjunto de dados e armazene em `ind`
 ind <- which(!abbs%in%murders$abb)
