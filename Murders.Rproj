@@ -28,3 +28,105 @@ identical(p,o)
 
 # Use colchetes para extrair `abb` de `assassinatos` e atribuí-lo a "b"
 b <- murders[["abb"]]
+
+# Verifique se `a` e `b` são idênticos
+identical(a,b)
+
+# Podemos ver a classe da variável 'region' usando class
+class(murders$region)
+
+# Determina o número de regiões incluídas nesta variável
+lenght(levels(murders$region))
+
+# A função `c()` conecta todas as strings dentro dela em um único vetor, que podemos atribuir a `x`
+x <- c("a", "a", "b", "b", "b", "c")
+
+#Uso da função table
+table(x)
+
+# Escreva uma linha de código para mostrar o número de estados por região
+table(murders$region)
+
+# Acesse a variável `state` e armazene-a em um objeto
+states <- murders$state
+
+# Classifique o objeto em ordem alfabética e redefina o objeto
+states <- sort(states)
+
+# Informa o primeiro valor alfabético
+states[1]
+
+# Acesse os valores da população do conjunto de dados e armazene-os no pop
+pop <- murders$population
+
+# Classifique o objeto e salve-o no mesmo objeto
+pop <- sort(pop)
+
+# Informa o menor tamanho da população
+min(murders$population)
+i_min <- which.min(murders$population)
+i_min
+murders$population[i_min]
+
+# Acesse a população do conjunto de dados e armazene-a no pop
+pop <- murders$population
+pop
+
+# Use o comando order para encontrar o vetor de índices que ordenam pop e armazenam no objeto ord
+ord <- order(pop)
+pop
+
+# Encontre o número do índice da entrada com o menor tamanho de população
+min(murders$population)
+i_min <- which.min(murders$population)
+i_min
+
+# Encontre o índice do menor valor para a variável total
+which.min(murders$total)
+
+# Encontre o índice do menor valor para a população
+which.min(murders$population)
+
+# Defina a variável i como o índice do menor estado
+i <- which.min(murders$population)
+
+# Definir estados de variáveis para manter os estados
+states <- murders$state
+
+# Use o índice que você acabou de definir para encontrar o estado com a menor população
+states[i]
+
+# Defina uma variável state para ser o nome do estado do quadro de dados de assassinatos
+states <- murders$state
+
+# Defina uma classificação variável para determinar as classificações do tamanho da população
+ranks <- rank(murders$population)
+
+# Defina uma variável ind para armazenar os índices necessários para ordenar os valores da população
+ind <- order(murders$population)
+
+# Crie um quadro de dados my_df com o nome do estado e sua classificação e ordenado do menos populoso ao mais
+my_df <- data.frame(states = states[ind], ranks = ranks[ind])
+
+# Usando o novo conjunto de dados
+biblioteca (dslabs)
+data(na_example)
+
+# Verificando a estrutura
+str(na_example)
+
+# Descubra a média de todo o conjunto de dados
+mean(na_exemplo)
+
+# Use is.na para criar um índice lógico ind que informa quais entradas são NA
+ind <- is.na(na_example)
+
+# Determine quantos NA ind tem usando a função sum
+sum(ind)
+
+# Armazena a taxa de homicídios por 100.000 para cada estado em taxa_de_assassinato
+murder_rate <- murders$total / murders$population * 100000
+
+# Calcule a taxa média de homicídios nos EUA
+mean(murder_rate)
+
