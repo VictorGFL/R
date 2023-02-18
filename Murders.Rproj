@@ -208,3 +208,51 @@ murders_nw <- filter(murders, region %in% c("Northeast", "West"))
 
 # Número de estados (linhas) nesta categoria
 nrow(murders_nw)
+
+# Crie uma tabela, chame-a de `my_states`, que satisfaça ambas as condições
+my_states <- filter(murders, region %in% c("Northeast", "West") & rate < 1)
+
+# Use select para mostrar apenas o nome do estado, a taxa de homicídios e a classificação
+select(my_states, state, rate, rank)
+
+# mostra o resultado e inclui apenas as colunas de estado, taxa e classificação, tudo em uma linha, nessa ordem
+filter(murders, region %in% c("Northeast", "West") & rate < 1) %>%  
+   select(state, rate, rank)
+   
+# Crie um novo quadro de dados chamado my_states (com especificações nas instruções)
+my_states <- murders %>% 
+    mutate(rate =  total / population * 100000, rank = rank(-rate)) %>%
+    filter(region %in% c("Northeast", "West") & rate < 1) %>%
+    select(state, rate, rank)
+    
+ # Carregue os conjuntos de dados e defina algumas variáveis
+library(dslabs)
+data(murders)
+
+population_in_millions <- murders$population/10^6
+total_gun_murders <- murders$total
+
+plot(population_in_millions, total_gun_murders)
+
+# Transforme a população (não a população em milhões) usando a transformação log10 e salve no objeto log10_population
+log10_population <- log(murders$population,10)
+
+# Transforme o total de assassinatos com armas usando a transformação log10 e salve no objeto log10_total_gun_murders
+log10_total_gun_murders <- log(total_gun_murders,10)
+
+# Crie um gráfico de dispersão com a população e assassinatos transformados em escala logarítmica
+plot(log10_population,log10_total_gun_murders)
+
+# Armazena a população em milhões e salva empopulation_in_millions
+population_in_millions <- murders$population/10^6
+
+# Crie um histograma desta variável
+hist(population_in_millions)
+
+# Crie um boxplot das populações do estado por região para o conjunto de dados de assassinatos
+state <- murders$state
+population <- murders$population
+boxplot(population  ~ region, data = murders)
+
+# Atribua a abreviação do estado quando o nome do estado tiver mais de 8 caracteres
+new_names <- ifelse(nchar(murders$state)>8, murders$abb, murders$state)
